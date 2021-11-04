@@ -1,0 +1,130 @@
+.tickets {
+    flex-direction: column;
+    width: 800px;
+    background-color: aqua;
+}
+
+.button {
+    cursor: pointer;
+    color: antiquewhite;
+    border: 3px solid;
+    border-color: goldenrod;
+    border-radius: 15px;
+    box-shadow: 4px 4px 4px 2px gray;
+    width: 300px;
+    height: 40px;
+    background-color: firebrick;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: forestgreen;
+}
+
+.ticket {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    justify-content: space-between;
+    width: 80%;
+    background-color: hotpink;
+}
+
+.description {
+    width: 400px;
+    cursor: pointer;
+}
+
+.edit {
+    cursor: pointer;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: ivory;
+    width: 50px;
+    height: 30px;
+    background-color: indigo;
+}
+
+.remove {
+    cursor: pointer;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: ivory;
+    width: 50px;
+    height: 30px;
+    background-color: indigo;
+    margin-right: 20px;
+}
+
+button {
+    cursor: pointer;
+    color: antiquewhite;
+    border: 3px solid;
+    border-color: goldenrod;
+    border-radius: 15px;
+    box-shadow: 4px 4px 4px 2px gray;
+    width: 300px;
+    height: 40px;
+    background-color: firebrick;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.popover {
+    position: absolute;
+    top: 0;
+    background-color: aqua;
+    width: 100%;
+    padding-left: 20%;
+    padding-bottom: 20px;
+}
+
+.label {
+    padding-top: 20px;
+    font-size: larger;
+}
+
+.ticketedit {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    font-size: large;
+    border: 3px solid;
+    border-color: goldenrod;
+    border-radius: 15px;
+    box-shadow: 4px 4px 4px 2px gray;
+    width: 300px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.delete {
+    position: absolute;
+    top: 0;
+    background-color: aqua;
+    width: 100%;
+    padding-left: 20%;
+    padding-bottom: 20px;
+}
+
+.delete_label {
+    padding-top: 20px;
+    font-size: larger;
+}
+
+.hidden {
+    display:none;
+}
