@@ -65,11 +65,22 @@ export default class HelpDesk {
     xhr.send();
   }
 
-  createTicket() {
-    const params = [
-      `name=${this.form.querySelector('.description').value}&description=${
-        encodeURIComponent(this.form.querySelector('.fulldescription').value)}`,
-    ];
+  createTicket(evt) {
+    let params = [];
+    if (!evt.target.dataset.id) {
+      params = [
+        `name=${this.form.querySelector('.description').value}
+        &description=${
+  encodeURIComponent(this.form.querySelector('.fulldescription').value)}`];
+    } else {
+      params = [
+        `name=${this.form.querySelector('.description').value}
+      &description=${
+  encodeURIComponent(this.form.querySelector('.fulldescription').value)}
+        &id=${
+  encodeURIComponent(evt.target.dataset.id)}`,
+      ];
+    }
     const url = 'https://helpdesk-kxrxll.herokuapp.com/?method=postTicket';
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
@@ -99,7 +110,48 @@ export default class HelpDesk {
         <div class="remove">Delete</div>
       `;
       newTicket.querySelector('.description').addEventListener('click', this.getTicketDescription.bind(this));
+
+      newTicket.querySelector('.edit').addEventListener('click', this.editTicket.bind(this));
+
+      newTicket.querySelector('.remove').addEventListener('click', this.deleteTicket.bind(this));
+
       this.container.appendChild(newTicket);
     }
+  }
+
+  editTicket(evt) {
+    const short = evt.target.closest('.ticket').querySelector('.description').textContent;
+    const { id } = evt.target.closest('.ticket').dataset;
+    const url = `https://helpdesk-kxrxll.herokuapp.com/?method=getTicket&id=${id}`;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.addEventListener('readystatechange', () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          const fulldescription = xhr.response;
+          this.popover.classList.remove('hidden');
+          document.querySelector('input.fulldescription').value = fulldescription;
+        }
+      }
+    });
+    xhr.send();
+    this.popover.classList.remove('hidden');
+    document.querySelector('input.description').value = short;
+    document.querySelector('.ok').dataset.id = id;
+  }
+
+  deleteTicket(evt) {
+    const { id } = evt.target.closest('.ticket').dataset;
+    const url = `https://helpdesk-kxrxll.herokuapp.com/?method=deleteTicket&id=${id}`;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.addEventListener('readystatechange', () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          this.getAllTickets();
+        }
+      }
+    });
+    xhr.send();
   }
 }
